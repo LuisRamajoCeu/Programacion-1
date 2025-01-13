@@ -15,12 +15,13 @@ public class Ejercicio11 {
 		System.out.println("*******************");
 		String cad = ArrayUtils.obtenerPalabra(array, n);
 		System.out.println(cad);
-		*/
+		
 		System.out.println("*******************");
+		*/
 		System.out.println("Escribe una palabra del array: ");
 		String palabra = sc.nextLine();
-		Integer posicion = ArrayUtils.buscarPalabra(array, palabra);
-		System.out.println(posicion);
+		Integer i = ArrayUtils.buscarPalabra(array, palabra);
+		System.out.println(i);
 		sc.close();
 	}
 
