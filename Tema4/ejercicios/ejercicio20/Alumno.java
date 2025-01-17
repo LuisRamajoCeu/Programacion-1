@@ -1,12 +1,13 @@
 package ejercicio20;
 
-public class Alumno {
+import ejercicio21.Persona;
+
+public class Alumno extends Persona{
 	public Alumno(String dni) {
+		super();
 		this.dni = dni;
 	}
 	private String dni;
-	private String nombre;
-	private Integer edad;
 	private Double nota;
 
 	public String getDni() {
@@ -15,22 +16,6 @@ public class Alumno {
 
 	public void setDni(String dni) {
 		this.dni = dni;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public Integer getEdad() {
-		return edad;
-	}
-
-	public void setEdad(Integer edad) {
-		this.edad = edad;
 	}
 
 	public Double getNota() {
@@ -46,4 +31,13 @@ public class Alumno {
 		}return nota;
 				
 	}
+	private String curso;
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
+	
 }
