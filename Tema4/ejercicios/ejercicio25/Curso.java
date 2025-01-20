@@ -1,6 +1,6 @@
-package ejercicio22;
+package ejercicio25;
 
-public class Curso {
+public class Curso extends Alumno{
 	private Integer identificador;
 	private String descripcion;
 	

@@ -31,13 +31,5 @@ public class Alumno extends Persona{
 		}return nota;
 				
 	}
-	private String curso;
-	public String getCurso() {
-		return curso;
-	}
-
-	public void setCurso(String curso) {
-		this.curso = curso;
-	}
 	
 }

@@ -16,6 +16,7 @@ public class Ejercicio23 {
 	
 	System.out.println("El profesor se llama: " + profesor.getNombre());
 	System.out.println("El profesor tiene: " + profesor.getEdad() + " años.");
+	System.out.println(profesor.toString());
 	sc.close();}
 
 }

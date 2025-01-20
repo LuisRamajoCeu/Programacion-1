@@ -2,8 +2,6 @@ package ejercicio22;
 
 import java.util.Scanner;
 
-import ejercicio20.Alumno;
-
 
 public class Ejercicio22 {
 
@@ -17,8 +15,6 @@ public class Ejercicio22 {
 	Integer edad = sc.nextInt();
 	System.out.println("Introduce la nota del alumno: ");
 	Double nota = sc.nextDouble();
-	System.out.println("Introduce el curso del alumno: ");
-	String curso = sc.nextLine();
 
 	Alumno alumno1 = new Alumno(dni);
 	//alumno1.setDni(dni);
@@ -27,9 +23,15 @@ public class Ejercicio22 {
 	alumno1.setNota(nota);
 	
 	Curso curso = new Curso();
-	System.out.println("Dime el id del curso");
-	Long idCurso = sc.nextLong();
 	
+	System.out.println("Dime el id del curso");
+	Integer idCurso = sc.nextInt();
+	sc.nextLine();
+	System.out.println("Dime la descripcion del curso");
+	String descCurso = sc.nextLine();
+	
+	curso.setDescripcion(descCurso);
+	curso.setIdentificador(idCurso);
 	
 	alumno1.setCurso(curso);
 	
@@ -38,7 +40,6 @@ public class Ejercicio22 {
 	System.out.println("Edad: " + alumno1.getEdad());
 	System.out.println("Nota: " + alumno1.getNota());
 	System.out.println("Nota aprobada: " + alumno1.aprobar());
-	System.out.println("Curso: " + alumno1.getCurso());
 
 	
 	sc.close();
