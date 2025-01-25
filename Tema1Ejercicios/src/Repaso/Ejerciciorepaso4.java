@@ -8,7 +8,7 @@ public class Ejerciciorepaso4 {
 	Scanner sc = new Scanner(System.in);
 	System.out.println("Dime tu número favorito: ");
 	Integer numero = sc.nextInt();
-	String espacio = sc.nextLine();
+	sc.nextLine();
 	System.out.println("Dime tu ciudad favorita");
 	String ciudad = sc.nextLine();
 	System.out.println("Tu número favorito es " + numero + " y tu ciudad favorita es " + ciudad);

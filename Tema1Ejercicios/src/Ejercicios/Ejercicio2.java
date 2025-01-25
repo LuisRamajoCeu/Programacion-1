@@ -12,7 +12,7 @@ public class Ejercicio2 {
 		System.out.println("¿De dónde eres?");
 		String lugar = sc.nextLine();
 		System.out.println("¿Qué tal se vive en " + lugar);
-		String como = sc.nextLine();
+		sc.nextLine();
 		System.out.println("Gracias. Un saludo");
 		sc.close();
 
