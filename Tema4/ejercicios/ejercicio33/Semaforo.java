@@ -39,6 +39,7 @@ public class Semaforo {
 	}
 
 	
+<<<<<<< Updated upstream
 	public void cambiarEstado() {
 		if(color.equals(VERDE)) {
 			color = AMBAR;
@@ -52,4 +53,6 @@ public class Semaforo {
 		}
 		
 	}
+=======
+>>>>>>> Stashed changes
 }
