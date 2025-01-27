@@ -1,9 +1,6 @@
-package ejercicio28;
+package ejercicio35;
 
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 
 public class Alumno {
 		private String dni;
@@ -70,19 +67,10 @@ public class Alumno {
 			if (getClass() != obj.getClass())
 				return false;
 			Alumno other = (Alumno) obj;
-			return Objects.equals(dni, other.dni);
+			return Objects.equals(dni, other.dni) && Objects.equals(edad, other.edad) 
+					&& Objects.equals(nombre, other.nombre)
+					&& Objects.equals(nota, other.nota);
 		}
-		
-		public Boolean validarDNI() {
-			Pattern patron = Pattern.compile("[0-9]{7,8}[A-Z a-z]");
-			Matcher match = patron.matcher(dni);
-			if (dni == null) {
-				return false;
-			}else if (match.matches()) {
-				return true;
-			}return false;
-		}
-
 		
 		
 }

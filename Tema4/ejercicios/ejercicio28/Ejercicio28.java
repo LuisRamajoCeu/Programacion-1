@@ -22,7 +22,7 @@ public class Ejercicio28 {
 	System.out.println("Introduce el Dni del alumno: ");
 	String dni = sc.nextLine();
 	alumno.setDni(dni);
-	if(!alumno.validarDNI(dni)) {
+	if(!alumno.validarDNI()) {
 		System.err.println("Dni no valido");
 	}else {
 		dniCorrecto = true;
