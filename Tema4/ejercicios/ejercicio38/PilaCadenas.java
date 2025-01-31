@@ -16,7 +16,7 @@ public class PilaCadenas {
 				return null;
 		}else {
 			String cadena = pilaEspera.get(pilaEspera.size()-1);
-			pilaEspera.remove(p -1);
+			pilaEspera.remove(pilaEspera.size() -1);
 			return cadena;
 		}
 	}
