@@ -1,10 +1,10 @@
-package ejercicio41;
+package ejercicio42;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Equipo  {
+public class Equipo {
 	private String nombreEquipo;
 	private Jugador capitan;
 	private List<Jugador> jugadores;
@@ -67,6 +67,17 @@ public class Equipo  {
 		}
 		sb.append("]");
 		return sb.toString();
+	}
+
+	// Ej 42
+	private static String competición;
+
+	public String getCompetición() {
+		return competición;
+	}
+
+	public void setCompetición(String competición) {
+		Equipo.competición = competición;
 	}
 
 }
