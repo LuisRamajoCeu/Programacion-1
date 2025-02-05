@@ -31,6 +31,5 @@ public abstract class Trabajador {
 	}
 
 	public abstract void getSueldo();
-
 }
 

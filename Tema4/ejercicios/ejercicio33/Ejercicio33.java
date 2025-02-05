@@ -26,9 +26,10 @@ public class Ejercicio33 {
 			semaforo.cambiarEstado();
 			System.out.println(semaforo);
 		}
-	//paso 8
+		//paso 8
 		Semaforo semaforo2 = new Semaforo();
 		semaforo2.setColor(semaforo.getColor());
 		semaforo2.setParpadeando(semaforo.getParpadeando());
 		System.out.println(semaforo2);
-}}
+}
+	}
