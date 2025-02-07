@@ -8,16 +8,18 @@ public class Reloj {
 	private Integer minutos;
 	private Integer segundos;
 	private Boolean formato24horas;
-
 	// 2
 	public Reloj() {
-		horas = 00;
-		minutos = 00;
-		segundos = 00;
+		horas = 0;
+		minutos = 0;
+		segundos = 0;
 		formato24horas = true;
 	}
 
 	public Reloj(Integer horas, Integer minutos, Integer segundos) {
+		this.horas = horas;
+		this.minutos = minutos;
+		this.segundos = segundos;
 		formato24horas = true;
 	}
 
@@ -79,6 +81,7 @@ public class Reloj {
 			pmAm = "pm";
 			horas12 = horas - 12;
 		}
+		
 		if(check()) {
 		if (formato24horas) {
 			return "Reloj: " + horas + ":" + minutos + ":" + segundos;
@@ -106,6 +109,8 @@ public class Reloj {
 		return Objects.equals(horas, other.horas) && Objects.equals(minutos, other.minutos)
 				&& Objects.equals(segundos, other.segundos);
 	}
+	
+	
 
 	
 	
