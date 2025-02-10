@@ -13,8 +13,9 @@ public class EquipoCombate {
 	}
 	
 	public void añadirPersonaje(Personaje personaje) {
-		if(tropa.size() < 5) {
+		if(tropa.size() < 5 && !tropa.contains(personaje)){			
 			tropa.add(personaje);
+			totalPuntosVida += personaje.getVida();
 		}else {
 			System.out.println("Está lleno");
 		}

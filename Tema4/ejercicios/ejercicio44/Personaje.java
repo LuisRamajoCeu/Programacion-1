@@ -6,11 +6,13 @@ public abstract class Personaje {
 	private String nombre;
 	private String codigo;
 	
-	public Personaje(String nombre, Integer codigo) {
+	public Personaje(String nombre, String codigo) {
 		this.nombre = nombre;
 		this.codigo = codigo;
 	}
-	
+	public abstract Integer getVida();
+	public abstract Integer getResta();
+	public abstract Integer getTiempo();
 	
 	
 	@Override

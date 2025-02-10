@@ -6,12 +6,17 @@ public class Asesino extends Personaje{
 	private static final Integer TIEMPO = 5;
 
 	
-	public Asesino(String nombre, Integer codigo) {
+	public Asesino(String nombre, String codigo) {
 		super(nombre, codigo);
 	}
 
-	public static Integer getVida() {
+	public Integer getVida() {
 		return VIDA;
+	}
+	public Integer getResta() {
+		return RESTA;
+	}public Integer getTiempo() {
+		return TIEMPO;
 	}
 	
 	
