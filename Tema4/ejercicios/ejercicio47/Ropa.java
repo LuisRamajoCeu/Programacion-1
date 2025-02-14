@@ -1,19 +1,23 @@
 package ejercicio47;
 
 public class Ropa extends Articulo{
-	private Integer talla;
+	private String talla;
 	private String color;
 	
 	public String getColor() {
 		return color;
 	}
-	public Integer getTalla() {
+	public String getTalla() {
 		return talla;
 	}
-	
-	public Ropa(String descripcion, Double precio) {
-		super(descripcion, precio);
+	public void setTalla(String talla) {
+		this.talla = talla;
 	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	
+	
 
 
 	

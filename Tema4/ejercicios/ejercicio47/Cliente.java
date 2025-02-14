@@ -10,6 +10,16 @@ public class Cliente {
 	public String getNombre() {
 		return nombre;
 	}
+	@Override
+	public String toString() {
+		return dni + "-" + nombre;
+	}
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 	
 	
 	
