@@ -33,7 +33,11 @@ public class Ejercicio47 {
 		System.out.println(carritoBlas);
 	//8
 		System.out.println(carritoBlas.getPrecioMedio());
-		
+	//9
+		carritoBlas.vaciarCesta();
+		System.out.println(carritoBlas);
+	//10
+		System.out.println(carritoBlas.getPrecioMedio());
 	
 	}
 

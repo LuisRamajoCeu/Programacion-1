@@ -1,19 +1,48 @@
 package ejercicio48;
 
-import java.util.HashSet;
-import java.util.Set;
+import ejercicio47.Carrito;
+import ejercicio47.Cliente;
+import ejercicio47.Libros;
+import ejercicio47.Ropa;
 
 public class Ejercicio48 {
 
 	public static void main(String[] args) {
-		Set<Integer> coches = new HashSet<Integer>();
-			coches.add(1);
-			coches.add(2);
-			coches.add(3);
-			coches.add(4);
-			coches.add(5);
-			for(Integer coche : coches) {
-			System.out.print(coche);
-	}}
+	//1
+		Cliente blas = new Cliente();
+		blas.setDni("12345678X");
+		blas.setNombre("Blas de los Montes");
+	//2
+		Carrito carritoBlas = new Carrito(blas);
+		System.out.println(carritoBlas);
+	//3
+		Ropa poncho = new Ropa();
+		poncho.setDescripcion("Poncho");
+		poncho.setPrecio(20.0);
+		poncho.setTalla("XL");
+		poncho.setColor("Azul");
+	//4
+		carritoBlas.addArticulo(poncho);
+		carritoBlas.addArticulo(poncho);
+		System.out.println(carritoBlas);
+	//5
+		Libros niet = new Libros();
+		niet.setAutor("Nietzsche");
+		niet.setDescripcion("Así habló Zaratustra");
+		niet.setPrecio(15.0);
+	//6
+		carritoBlas.addArticulo(niet);
+		System.out.println(carritoBlas);
+	//7
+		carritoBlas.borrarArticulo(1);
+		System.out.println(carritoBlas);
+	//8
+		System.out.println(carritoBlas.getPrecioMedio());
+	//9
+		carritoBlas.vaciarCesta();
+		System.out.println(carritoBlas);
+	//10
+		System.out.println(carritoBlas.getPrecioMedio());
 
+	}
 }

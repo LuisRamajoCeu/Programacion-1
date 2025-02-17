@@ -1,4 +1,4 @@
-package ejercicio47;
+package ejercicio48;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
