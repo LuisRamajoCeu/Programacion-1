@@ -1,5 +1,7 @@
 package ejercicio47;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -33,21 +35,21 @@ public class Carrito {
 	public Integer getCantidad() {
 		return listaArticulos.size();
 	}
-	public Double getTotal(List<Articulo> listaArticulos) {
-		Double total = 0.0;
+	public BigDecimal getTotal(List<Articulo> listaArticulos) {
+		BigDecimal total = new BigDecimal(0);
 		for(Articulo articulo : listaArticulos) {
-			total += articulo.getPrecio();
+			total = total.add(articulo.getPrecio());
 		}
 		return total;
 	} 
-	public Double getPrecioMedio() {
-		Double total = 0.0;
+	public BigDecimal getPrecioMedio() {
+		BigDecimal total = new BigDecimal(0);
 		for(int i = 0; i < listaArticulos.size(); i++) {
-			total =+ listaArticulos.get(i).getPrecio();
+			total = total.add(listaArticulos.get(i).getPrecio());
 		}if(listaArticulos.size() == 0) {
-			return 0.0;
+			return total;
 		}else {
-		return total/listaArticulos.size();
+		return total.divide(new BigDecimal(listaArticulos.size()),2,RoundingMode.HALF_UP);
 	}}
 	
 	@Override

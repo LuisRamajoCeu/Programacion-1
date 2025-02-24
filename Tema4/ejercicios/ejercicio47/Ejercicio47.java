@@ -1,5 +1,7 @@
 package ejercicio47;
 
+import java.math.BigDecimal;
+
 public class Ejercicio47 {
 
 	public static void main(String[] args) {
@@ -13,7 +15,7 @@ public class Ejercicio47 {
 	//3
 		Ropa poncho = new Ropa();
 		poncho.setDescripcion("Poncho");
-		poncho.setPrecio(20.0);
+		poncho.setPrecio(new BigDecimal(20));
 		poncho.setTalla("XL");
 		poncho.setColor("Azul");
 	//4
@@ -24,7 +26,7 @@ public class Ejercicio47 {
 		Libros niet = new Libros();
 		niet.setAutor("Nietzsche");
 		niet.setDescripcion("Así habló Zaratustra");
-		niet.setPrecio(15.0);
+		niet.setPrecio(new BigDecimal(15));
 	//6
 		carritoBlas.addArticulo(niet);
 		System.out.println(carritoBlas);

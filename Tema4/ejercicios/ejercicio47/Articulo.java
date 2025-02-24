@@ -1,8 +1,10 @@
 package ejercicio47;
 
+import java.math.BigDecimal;
+
 public class Articulo {
 	private String descripcion;
-	private Double precio;
+	private BigDecimal precio;
 	
 	
 
@@ -10,7 +12,7 @@ public class Articulo {
 		return descripcion;
 	}
 
-	public Double getPrecio() {
+	public BigDecimal getPrecio() {
 		return precio;
 	}
 
@@ -18,7 +20,7 @@ public class Articulo {
 		this.descripcion = descripcion;
 	}
 
-	public void setPrecio(Double precio) {
+	public void setPrecio(BigDecimal precio) {
 		this.precio = precio;
 	}
 	

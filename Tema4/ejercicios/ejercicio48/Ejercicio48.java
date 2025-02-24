@@ -1,9 +1,6 @@
 package ejercicio48;
 
-import ejercicio47.Carrito;
-import ejercicio47.Cliente;
-import ejercicio47.Libros;
-import ejercicio47.Ropa;
+
 
 public class Ejercicio48 {
 
