@@ -2,13 +2,14 @@ package ejercicio04Repaso;
 
 import java.time.LocalDate;
 
-public class Libros {
+public abstract class Libros {
 	private String titulo;
 	private String autor;
 	private LocalDate fechaEdicion;
 	private Integer numPaginas;
 	
 	public Libros(String titulo, String autor, LocalDate fechaEdicion,Integer numPaginas) {
+		super();
 		this.titulo = titulo;
 		this.autor = autor;
 		this.fechaEdicion = fechaEdicion;
@@ -16,6 +17,22 @@ public class Libros {
 		
 	}
 	
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getAutor() {
+		return autor;
+	}
+
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+
 	public LocalDate getFechaEdicion() {
 		return fechaEdicion;
 	}
@@ -31,5 +48,11 @@ public class Libros {
 		this.numPaginas = numPaginas;
 	}
 	
+	public abstract Integer getPeso();
 	
+	public String toString() {
+		return "titulo=" + titulo + ", autor=" + autor + ", fechaEdicion=" + fechaEdicion + ", paginas="
+				+ numPaginas;
+
+	}
 }

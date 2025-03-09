@@ -4,24 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PilaCadenas {
-	private List<String> pilaEspera; 
+	
+	private List<String> pila;
+	
 	public PilaCadenas() {
-		pilaEspera = new ArrayList<>();
+		pila = new ArrayList<>();
 	}
-	public void añadirCadena(String cadena) {
-		pilaEspera.add(cadena);
+	
+	public void añadirCadena(String cadena){
+		pila.add(cadena);
 	}
 	public String sacarCadena() {
-		if(pilaEspera.isEmpty()) {
-				return null;
-		}else {
-			String cadena = pilaEspera.get(pilaEspera.size()-1);
-			pilaEspera.remove(pilaEspera.size() -1);
-			return cadena;
+		if (pila.isEmpty()) {
+			return null;
 		}
+		String cadena = pila.get(pila.size()-1);
+		pila.remove(pila.size()-1);
+		return cadena;
+		//o pila.remove(pila.size()-1);
 	}
+	
 	public Integer getTamaño() {
-		Integer tamaño = pilaEspera.size();
-			return tamaño;
-		}
+		return pila.size();
+	}
+
+	@Override
+	public String toString() {
+		return pila.toString();
+	}
+	
 }
+

@@ -5,67 +5,76 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class CuentaAhorros {
-	private String numeroCuenta;
-	private List<Movimientos> movimientos;
-	private BigDecimal dineroCuenta;
-	public static final String TIPO_CARGOS = "C";
-	public static final String TIPO_INGRESOS = "I";
-	public static final String TIPO_RETIRADAS = "R";
-	public static final String TIPO_TODOS = "T";
+	private String numero; // String porque puede empezar por cero
+	private List<Movimiento> movimientos;
+	
+	public CuentaAhorros(String numero) {
+		this.numero = numero;
+		this.movimientos = new ArrayList<>();		
+	}
+	
+	public String getNumCuenta() {
+		return numero;
+	}
 
-	
-	public BigDecimal getDineroCuenta() {
-		return dineroCuenta;
-	}
-	public void setDineroCuenta(BigDecimal dineroCuenta) {
-		this.dineroCuenta = dineroCuenta;
-	}
-	public String getNumeroCuenta() {
-		return numeroCuenta;
-	}
-	public void setNumero(String numeroCuenta) {
-		this.numeroCuenta = numeroCuenta;
+	public void setNumCuenta(String numCuenta) {
+		this.numero = numCuenta;
 	}
 	
-	
-	public CuentaAhorros(String numeroCuenta) {
-		this.numeroCuenta = numeroCuenta;
-		this.movimientos = new ArrayList<>();
-		this.dineroCuenta = new BigDecimal(0);
+	public void addMovimiento(Movimiento mov) {
+		movimientos.add(mov);
 	}
-	public List
 	
-	public void añadirMovimiento(Movimientos movimiento) {
-		movimientos.add(movimiento);
-		this.dineroCuenta.add(movimiento.importe);
-	}
-	public BigDecimal dineroTotal() {
+	public BigDecimal getTotal() {
 		BigDecimal saldoTotal = BigDecimal.ZERO;
-		
-		for(Movimientos mov : movimientos) {
-			if(mov.getTipo().equalsIgnoreCase(TIPO_INGRESOS)) {
-				saldoTotal = saldoTotal.add(mov.getImporte());
-			}else {
-				saldoTotal = saldoTotal.subtract(mov.getImporte());
+	
+        for (Movimiento movimiento : movimientos) {
+            if (movimiento.getTipo().equals("I")) {
+            	saldoTotal = saldoTotal.add(movimiento.getImporte());
+            } else {
+            	saldoTotal = saldoTotal.subtract(movimiento.getImporte());
+            }
+        }
+        return saldoTotal.setScale(2, RoundingMode.HALF_DOWN);	
+	}
+	
+	public List<String> getMovimientosString(){
+		List<String> resultado = new ArrayList<>();
+		for (Movimiento mov : movimientos) {
+			resultado.add(mov.toString());
+		}
+		return resultado;
+	}	
+	
+	public List<String> getCargos(){
+		List<String> resultado = new ArrayList<>();
+		for (Movimiento mov : movimientos) {
+			if (mov.getTipo().equals(Movimiento.TIPO_CARGO)) {
+				resultado.add(mov.toString());
 			}
 		}
-		return saldoTotal.setScale(2,RoundingMode.HALF_DOWN);
+		return resultado;
 	}
 	
-	public void mostrarMovimientos(String tipo){
-		if(tipo.equalsIgnoreCase(TIPO_TODOS)) {
-		for(Movimientos mov : movimientos) {
-				System.out.println(mov);
-		}}else if(tipo.equalsIgnoreCase(TIPO_CARGOS)) {
-			Cargos.mostrarCargos();
-		}else if(tipo.equalsIgnoreCase(TIPO_INGRESOS)) {
-			Ingresos.mostrarIngresos();
-		}else if(tipo.equalsIgnoreCase(TIPO_RETIRADAS)) {
-			Retiradas.mostrarRetiradas();
+	public List<String> getIngresos(){
+		List<String> resultado = new ArrayList<>();
+		for (Movimiento mov : movimientos) {
+			if (mov.getTipo().equals(Movimiento.TIPO_INGRESO)) {
+				resultado.add(mov.toString());
+			}
 		}
+		return resultado;
 	}
-	
+	public List<String> getRetiradas(){
+		List<String> resultado = new ArrayList<>();
+		for (Movimiento mov : movimientos) {
+			if (mov.getTipo().equals(Movimiento.TIPO_RETIRADA)) {
+				resultado.add(mov.toString());
+			}
+		}
+		return resultado;
+	}
 	
 }
+

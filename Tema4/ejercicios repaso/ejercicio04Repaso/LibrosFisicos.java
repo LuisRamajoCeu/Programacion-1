@@ -20,6 +20,9 @@ public class LibrosFisicos extends Libros{
 	public void setPeso(Integer peso) {
 		this.peso = peso;
 	}
-	
+	@Override
+	public String toString() {
+		return super.toString() + " - ancho: "+ this.ancho+ " - alto: "+this.alto+" - peso: "+this.peso;
+	}
 	
 }

@@ -7,4 +7,15 @@ public class LibrosDigitales extends Libros{
 		super(titulo, autor, fechaEdicion, numPaginas);
 		
 	}
+	@Override
+	public Integer getPeso() {
+		return 0;
+	}
+
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+
 }
