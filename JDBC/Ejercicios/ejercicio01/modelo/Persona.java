@@ -1,12 +1,14 @@
-package modelo;
+package ejercicio01.modelo;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Persona {
 	private String nombre;
 	private String apellidos;
 	private String dni;
-	private Date fechaNacimiento;
+	private LocalDate fechaNacimiento;
 	public String getNombre() {
 		return nombre;
 	}
@@ -16,7 +18,7 @@ public class Persona {
 	public String getDni() {
 		return dni;
 	}
-	public Date getFechaNacimiento() {
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 	public void setNombre(String nombre) {
@@ -29,8 +31,14 @@ public class Persona {
 		this.dni = dni;
 	}
 	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+		this.fechaNacimiento = fechaNacimiento.toLocalDate();
 	}
+	@Override
+	public String toString() {
+		return "Persona [nombre=" + nombre + ", apellidos=" + apellidos + ", dni=" + dni + ", fechaNacimiento="
+				+ DateTimeFormatter.ofPattern("dd/MM/yyyy").format(fechaNacimiento) + "]"; 
+	}
+	
 	
 	
 }
