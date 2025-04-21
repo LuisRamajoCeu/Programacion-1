@@ -1,12 +1,14 @@
-package ejercicio02.servicio;
+package ejercicio03.servicio;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import ejercicio02.modelo.Persona;
+import ejercicio03.modelo.Persona;
 
 public class PersonasServicio {
 
@@ -55,5 +57,20 @@ public class PersonasServicio {
 		}
 		return lista;
 	}
-
+	
+	public void insertarPersona(Persona personaInsertada) throws SQLException {
+		String sqlInsert = "INSERT INTO PERSONAS (DNI,NOMBRE,APELLIDOS,FECHA_NACIMIENTO) VALUES (?,?,?,?)";
+		try (Connection conn = openConn.getNewConnection(); PreparedStatement stmt = conn.prepareStatement(sqlInsert)) {
+			System.out.println(sqlInsert);
+			stmt.setString(1, personaInsertada.getDni());
+			stmt.setString(2, personaInsertada.getNombre());
+			stmt.setString(3, personaInsertada.getApellidos());
+			stmt.setDate(4, Date.valueOf(personaInsertada.getFechaNacimiento()));
+			stmt.execute();
+		}
+	}
+	/*
+	 INSERT INTO PERSONAS VALUES ('"+p.getDni()+"', '"+p.getNombre()+"', '"p.getApellidos()+"', '"
+	 + Date.valueOf(p.getFechaNacimiento())+"')";
+	 */
 }
