@@ -4,31 +4,30 @@ import java.sql.SQLException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Scanner;
 
-import ejercicio03.modelo.DatosIncompletosException;
 import ejercicio03.modelo.Persona;
+import ejercicio03.servicio.DatosIncompletosException;
 import ejercicio03.servicio.PersonasServicio;
 
 public class Ejercicio03 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		/*System.out.print("Escribe la palabra a buscar: ");
-		String palabra = sc.nextLine();*/
+		/*
+		 * System.out.print("Escribe la palabra a buscar: "); String palabra =
+		 * sc.nextLine();
+		 */
 		Persona p = new Persona();
 		try {
 			PersonasServicio service = new PersonasServicio();
-			/*List<Persona> lista = service.buscarPersonas(palabra);
-			if (lista.isEmpty()) {
-				System.out.println("No existe ninguna persona con esa palabra");
-			} else {
-				System.out.println(lista);
-			}*/
+			/*
+			 * List<Persona> lista = service.buscarPersonas(palabra); if (lista.isEmpty()) {
+			 * System.out.println("No existe ninguna persona con esa palabra"); } else {
+			 * System.out.println(lista); }
+			 */
 			Boolean error = true;
 			do {
-				Boolean validado = false;
 				System.out.println("Introduce datos para insertar en la base de datos");
 				System.out.println("Dni: ");
 				String dni = sc.nextLine();
@@ -50,8 +49,7 @@ public class Ejercicio03 {
 					p.setNombre(nombre);
 					p.setApellidos(apellidos);
 					p.setFechaNacimientoLocalDate(fecha);
-					validado = p.validar();
-					if (validado) {
+					if (p.validar()) {
 						service.insertarPersona(p);
 					}
 					error = false;

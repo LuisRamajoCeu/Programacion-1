@@ -1,4 +1,4 @@
-package ejercicio03.servicio;
+package ejercicio06.servicio;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import ejercicio03.modelo.Persona;
+import ejercicio06.modelo.Persona;
 
 public class PersonasServicio {
 
@@ -71,8 +71,39 @@ public class PersonasServicio {
 			System.out.println("Error en el metodo insertar");
 		}
 	}
-	/*
-	 * INSERT INTO PERSONAS VALUES ('"+p.getDni()+"', '"+p.getNombre()+"',
-	 * '"p.getApellidos()+"', '" + Date.valueOf(p.getFechaNacimiento())+"')";
-	 */
+
+	public void actualizarPersona(Persona persona) throws SQLException {
+		String sql = "UPDATE PERSONAS SET NOMBRE = ?, APELLIDOS = ?, FECHA_NACIMIENTO = ? WHERE DNI = '"
+				+ persona.getDni() + "'";
+		try (Connection conn = openConn.getNewConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+			System.out.println(sql);
+			stmt.setString(1, persona.getNombre());
+			stmt.setString(2, persona.getApellidos());
+			stmt.setDate(3, Date.valueOf(persona.getFechaNacimiento()));
+			int c = stmt.executeUpdate();
+			if (c == 0) {
+				System.out.println("No hay ninguna persona con ese DNI");
+			} else {
+				System.out.println("Se ha actualizado: 1 persona");
+			}
+		} catch (Exception e) {
+			System.out.println("Error en el metodo actualizar");
+		}
+	}
+
+	public void borrarPersona(String dni) throws SQLException {
+		String sql = "DELETE FROM PERSONAS WHERE DNI = '" + dni + "'";
+		try (Connection conn = openConn.getNewConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+			System.out.println(sql);
+			int c = stmt.executeUpdate();
+			if (c == 0) {
+				System.out.println("No hay ninguna persona con ese DNI");
+			} else {
+				System.out.println("Se ha borrado: 1 persona");
+			}
+		} catch (Exception e) {
+			System.out.println("Error en el metodo borrar");
+		}
+	}
+	
 }

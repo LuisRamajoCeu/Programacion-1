@@ -1,4 +1,4 @@
-package ejercicio03.servicio;
+package ejercicio04.servicio;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import ejercicio03.modelo.Persona;
+import ejercicio04.modelo.Persona;
 
 public class PersonasServicio {
 

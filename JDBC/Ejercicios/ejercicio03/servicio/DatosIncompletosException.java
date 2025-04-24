@@ -1,4 +1,4 @@
-package ejercicio03.modelo;
+package ejercicio03.servicio;
 
 public class DatosIncompletosException extends Exception {
 

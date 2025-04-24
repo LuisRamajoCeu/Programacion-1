@@ -1,10 +1,10 @@
-package ejercicio03.modelo;
+package ejercicio06.modelo;
 
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import ejercicio03.servicio.DatosIncompletosException;
+import ejercicio06.servicio.DatosIncompletosException;
 
 public class Persona {
 	private String nombre;
