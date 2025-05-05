@@ -1,4 +1,4 @@
-package ejercicio07.app;
+package ejercicio09.app;
 
 import java.sql.SQLException;
 import java.time.DateTimeException;
@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import ejercicio07.servicio.DatosIncompletosException;
-import ejercicio07.modelo.Persona;
-import ejercicio07.servicio.PersonasServicio;
+import ejercicio09.servicio.DatosIncompletosException;
+import ejercicio09.modelo.Persona;
+import ejercicio09.servicio.PersonasServicio;
 
-public class Ejercicio07 {
+public class Ejercicio08 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -21,7 +21,8 @@ public class Ejercicio07 {
 			do {
 				System.out.println(
 						"********MENÚ********\n1. Consultar persona.\n2. Buscar persona.\n3. "
-						+ "Insertar persona.\n4. Actualizar persona.\n5. Borrar persona.\n6. Insertar lista.\n7. Salir");
+						+ "Insertar persona.\n4. Actualizar persona.\n5. Borrar persona.\n6. Insertar lista.\n7. Borrar adultos."
+						+ "\n8. Salir");
 				int opcion = sc.nextInt();
 				sc.nextLine();
 				switch (opcion) {
@@ -220,6 +221,10 @@ public class Ejercicio07 {
 					}
 					break;
 				case 7:
+					PersonasServicio service = new PersonasServicio();
+					service.borrarPersonasA();
+					
+				case 8:
 					System.out.println("Saliendo del programa");
 					parar = true;
 					break;

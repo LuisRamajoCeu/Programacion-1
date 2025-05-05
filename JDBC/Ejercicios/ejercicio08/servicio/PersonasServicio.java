@@ -1,4 +1,4 @@
-package ejercicio07.servicio;
+package ejercicio08.servicio;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import ejercicio07.modelo.Persona;
+import ejercicio08.modelo.Persona;
 
 public class PersonasServicio {
 
@@ -107,16 +107,12 @@ public class PersonasServicio {
 	}
 	
 	public void insertarPersonas(List<Persona> listaPersonas) throws SQLException {
-		String sqlInsert = "INSERT INTO PERSONAS (DNI,NOMBRE,APELLIDOS,FECHA_NACIMIENTO) VALUES (?,?,?,?)";
+		String sqlInsert = "INSERT INTO PERSONAS VALUES (?,?,?,?)";
 		try (Connection conn = openConn.getNewConnection(); PreparedStatement stmt = conn.prepareStatement(sqlInsert)) {
 			conn.setAutoCommit(false);
 			try {
 				for(Persona personaInsertada : listaPersonas) {
-					stmt.setString(1, personaInsertada.getDni());
-					stmt.setString(2, personaInsertada.getNombre());
-					stmt.setString(3, personaInsertada.getApellidos());
-					stmt.setDate(4, Date.valueOf(personaInsertada.getFechaNacimiento()));
-					stmt.execute();
+					insertar(personaInsertada,conn);
 				}
 				conn.commit();
 			}catch (SQLException e) {
@@ -127,6 +123,17 @@ public class PersonasServicio {
 		}catch(SQLException e) {
 			System.out.println(e.getMessage());
 			throw e;
+		}
+	}
+	
+	private void insertar(Persona personaInsertada,Connection conn) throws SQLException{
+		String sqlInsert = "INSERT INTO PERSONAS (DNI,NOMBRE,APELLIDOS,FECHA_NACIMIENTO) VALUES (?,?,?,?)";
+		try(PreparedStatement stmt = conn.prepareStatement(sqlInsert);){
+			stmt.setString(1, personaInsertada.getDni());
+			stmt.setString(2, personaInsertada.getNombre());
+			stmt.setString(3, personaInsertada.getApellidos());
+			stmt.setDate(4, Date.valueOf(personaInsertada.getFechaNacimiento()));
+			stmt.execute();
 		}
 	}
 	

@@ -1,4 +1,4 @@
-package ejercicio07.app;
+package ejercicio08.app;
 
 import java.sql.SQLException;
 import java.time.DateTimeException;
@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import ejercicio07.servicio.DatosIncompletosException;
-import ejercicio07.modelo.Persona;
-import ejercicio07.servicio.PersonasServicio;
+import ejercicio08.servicio.DatosIncompletosException;
+import ejercicio08.modelo.Persona;
+import ejercicio08.servicio.PersonasServicio;
 
-public class Ejercicio07 {
+public class Ejercicio08 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
