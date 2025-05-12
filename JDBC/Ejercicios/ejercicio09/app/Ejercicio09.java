@@ -12,7 +12,7 @@ import ejercicio09.servicio.DatosIncompletosException;
 import ejercicio09.modelo.Persona;
 import ejercicio09.servicio.PersonasServicio;
 
-public class Ejercicio08 {
+public class Ejercicio09 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
