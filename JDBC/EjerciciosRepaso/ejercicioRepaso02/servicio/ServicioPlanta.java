@@ -33,7 +33,8 @@ public class ServicioPlanta {
 			stmt.setString(2, p.getNombre());
 			stmt.setString(3, p.getTipo());
 			stmt.setBigDecimal(4, p.getAltura());
-			stmt.setDate(5, Date.valueOf(p.getFechaPlantacion()));			
+			stmt.setDate(5, Date.valueOf(p.getFechaPlantacion()));	
+			stmt.execute();
 		}
 		}catch(SQLException e) {
 			throw e;
