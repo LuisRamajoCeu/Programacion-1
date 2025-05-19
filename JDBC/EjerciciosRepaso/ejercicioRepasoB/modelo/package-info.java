@@ -1,1 +1,0 @@
-package ejercicioRepasoB.modelo;

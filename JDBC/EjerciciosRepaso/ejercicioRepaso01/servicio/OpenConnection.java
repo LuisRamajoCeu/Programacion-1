@@ -7,14 +7,12 @@ import java.sql.SQLException;
 public class OpenConnection {
 
 	public Connection getNewConnection() throws SQLException {
-		String usuario = "PROGRAMACION";
-		String password = "PROGRAMACION";
-
+		String usuario = "CASA";
+		String password = "CASA";
 		String url = "jdbc:oracle:thin:@//localhost:1521/XE";
 		String driverClass = "oracle.jdbc.driver.OracleDriver";
 
 		try {
-
 			Class.forName(driverClass);
 		} catch (ClassNotFoundException e) {
 			System.err.println("No se encuentra el driver JDBC. Revisa su configuracion");

@@ -6,33 +6,35 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import ejercicio09.servicio.OpenConnection;
 import ejercicioRepaso01.modelo.ProductoGourmet;
 
 public class ServicioProductoGourmet {
 	private OpenConnection openConn;
 
-	public ServicioProductoGourmet() throws SQLException{
+	public ServicioProductoGourmet() throws SQLException {
 		openConn = new OpenConnection();
 	}
-	
-	public void insertarUnProducto(ProductoGourmet producto) throws SQLException,ProductoInvalidoException {
-		try(Connection conn = openConn.getNewConnection()) {
+
+	public void insertarUnProducto(ProductoGourmet producto) throws SQLException, ProductoInvalidoException {
+		try (Connection conn = openConn.getNewConnection()) {
 			insertarProducto(producto, conn);
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			System.out.println("Error sql en metodo insertar un producto");
 			throw e;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println("Error en metodo insertar un producto");
 		}
 	}
-	
-	public void insertarProducto(ProductoGourmet producto,Connection conn) throws SQLException,ProductoInvalidoException{
+
+	public void insertarProducto(ProductoGourmet producto, Connection conn)
+			throws SQLException, ProductoInvalidoException {
 		String sql = "INSERT INTO productos_gourmet values (?,?,?,?,?)";
-		try(PreparedStatement stmt = conn.prepareStatement(sql)) {
-			if(producto.getPrecio().compareTo(BigDecimal.ZERO) <= 0) {
+		try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+			if (producto.getPrecio().compareTo(BigDecimal.ZERO) <= 0) {
 				throw new SQLException("El precio debe de ser mayor que cero");
 			}
 			stmt.setInt(1, producto.getId());
@@ -41,65 +43,90 @@ public class ServicioProductoGourmet {
 			stmt.setBigDecimal(4, producto.getPrecio());
 			stmt.setBoolean(5, producto.getDisponible());
 			stmt.executeUpdate();
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			System.out.println("Error sql en metodo insertar producto");
 			throw e;
-		}catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println("Error en metodo insertar producto");
 		}
 	}
-	
-	public void insertarListaProductos(List<ProductoGourmet> listaProductos) throws SQLException,ProductoInvalidoException{
-		try(Connection conn = openConn.getNewConnection()) {
+
+	public void insertarListaProductos(List<ProductoGourmet> listaProductos)
+			throws SQLException, ProductoInvalidoException {
+		try (Connection conn = openConn.getNewConnection()) {
 			conn.setAutoCommit(false);
 			try {
-				for(ProductoGourmet producto : listaProductos) {
-					insertarProducto(producto,conn);
+				for (ProductoGourmet producto : listaProductos) {
+					insertarProducto(producto, conn);
 				}
 				conn.commit();
-			}catch(SQLException e) {
+			} catch (SQLException e) {
 				conn.rollback();
 				System.out.println("Error sql en metodo insertar producto, se deshace los inserts");
 				throw e;
 			}
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			throw e;
-		} 
+		}
 	}
-	
-	public List<ProductoGourmet> consultaTipoProductoGourmets(String tipo) throws SQLException,ProductoNoEncontradoException{
+
+	public List<ProductoGourmet> consultaTipoProductoGourmets(String tipo)
+			throws SQLException, ProductoNoEncontradoException {
 		String sql = "SELECT * FROM productos_gourmet WHERE tipo = ?";
 		List<ProductoGourmet> lista = new ArrayList<>();
-		try (Connection conn = openConn.getNewConnection(); PreparedStatement stmt = conn.prepareStatement(sql)){
+		try (Connection conn = openConn.getNewConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, tipo);
 			ResultSet rs = stmt.executeQuery();
-			
-			while(rs.next()) {
-				ProductoGourmet p = new ProductoGourmet(rs.getInt("id"), rs.getString("nombre"), 
-				rs.getString("tipo"),rs.getBigDecimal("precio"), rs.getBoolean("disponible"));
+
+			while (rs.next()) {
+				ProductoGourmet p = new ProductoGourmet(rs.getInt("id"), rs.getString("nombre"), rs.getString("tipo"),
+						rs.getBigDecimal("precio"), rs.getBoolean("disponible"));
 				lista.add(p);
 			}
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			throw e;
 		}
 		if (lista.isEmpty()) {
 			throw new ProductoNoEncontradoException("No se encontró el producto con tipo: " + tipo);
-		}		
+		}
 		return lista;
 	}
-	
-	public void eliminaProducto(Integer id) throws SQLException,ProductoNoEncontradoException{
+
+	public void eliminaProducto(Integer id) throws SQLException, ProductoNoEncontradoException {
 		String sql = "DELETE FROM productos_gourmet WHERE id = ?";
-		try (Connection conn = openConn.getNewConnection(); PreparedStatement stmt = conn.prepareStatement(sql)){
+		try (Connection conn = openConn.getNewConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setInt(1, id);
 			int filas = stmt.executeUpdate();
 			if (filas == 0) {
-				throw new ProductoNoEncontradoException("No se encontró el producto con id: "+id);
+				throw new ProductoNoEncontradoException("No se encontró el producto con id: " + id);
 			}
-		} catch(SQLException e) {
+		} catch (SQLException e) {
+			throw e;
+		} catch (Exception e) {
 			throw e;
 		}
 	}
-	
-}
 
+	public Map<Integer, ProductoGourmet> consultarProductosDisponibles()
+			throws SQLException, ProductoNoEncontradoException {
+		String sql = "SELECT * FROM productos_gourmet WHERE disponible = ?";
+		Map<Integer, ProductoGourmet> mapa = new HashMap<>();
+		try (Connection conn = openConn.getNewConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setBoolean(1, true);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				ProductoGourmet p = new ProductoGourmet(rs.getInt("id"), rs.getString("nombre"), rs.getString("tipo"),
+				rs.getBigDecimal("precio"), rs.getBoolean("disponible"));
+				mapa.put(rs.getInt("id"), p);
+			}
+			if (mapa.isEmpty()) {
+				throw new ProductoNoEncontradoException("No se encontraron productos disponibles");
+			}
+		} catch (SQLException e) {
+			throw e;
+		}
+		
+		return mapa;
+	}
+
+}
